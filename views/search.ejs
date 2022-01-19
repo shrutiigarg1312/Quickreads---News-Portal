@@ -1,0 +1,101 @@
+<%- include("header", {title: 'search'}) -%>
+
+    <!-- Container to store Search filters -->
+    <section class="search-box">
+        <div class="container p-2">
+            <form method="GET" class="search-article">
+                <div class="box-container d-flex">
+                    <input class="search-input" type="text" name="name" id="name" placeholder="Search"
+                        autocomplete="off" />
+                </div>
+                <div class="filters">
+                    <!-- Search filter based on Category -->
+                    <div>
+                        <label for="category_select">Category</label>
+                        <select name="category_select" id="category_select">
+                            <option value="">Select Any Category</option>
+                            <option value="Business">Business</option>
+                            <option value="Education">Education</option>
+                            <option value="Health">Health</option>
+                            <option value="Food">Food</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Politics">Politics</option>
+
+                        </select>
+                    </div>
+                    <!-- Search filter based on From Date -->
+                    <div>
+                        <label for="from_date">From</label>
+                        <input type="date" name="from_date" id="from_date" >
+                    </div>
+                    <!-- Search filter based on To Date -->
+                    <div>
+                        <label for="to_date">To</label>
+                        <input type="date" name="to_date" id="to_date" >
+                    </div>
+                    <!-- Search filter based on Trending -->
+                    <div>
+                        <label for="trending">Trending</label>
+                        <input type="checkbox" name="trending" id="trending" value="1">
+                    </div>
+                </div>
+                <center>
+                    <!-- Button to search based on above filters -->
+                    <button type="submit" name="search" class="btn btn-primary">Search</button>
+                </center>
+            </form>
+        </div>
+    </section>
+    <!-- Container to store the Search Results -->
+    <section class="py-1 category-list">
+        <div class="container">
+            <h2 class="search-heading">Search Results :</h2>
+            <div class="card-container">
+                <!-- Article Card -->
+                <article class="card">
+                    <a href="" class="bookmark" title="Add to Bookmarks">
+                        <i class="fas fa-bookmark"></i>
+                    </a>
+                    <div class="card-img">
+                        <img src="./images/articles/article-6-1616665353.jpg" />
+                    </div>
+                    <div>
+                        <div class="tag tag-purple"><a href="articles.html">Sports</a></div>
+                        <div class="tag tag-new">NEW</div>
+                        <h3 class="card-title" href="./article.html">Lorem ipsum dolor</h3>
+                        <p class="card-data">
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde error nisi aperiam autem quae
+                            voluptate hic
+                            culpa? Beatae natus eum culpa corporis odio...
+                        </p>
+                        <a href="./news.html" class="btn btn-card">Read More <span>&twoheadrightarrow; </span>
+                        </a>
+                    </div>
+                </article>
+
+                <!-- Article Card -->
+                <article class="card">
+                    <a href="" class="bookmark" title="Add to Bookmarks">
+                        <i class="far fa-bookmark"></i>
+                    </a>
+                    <div class="card-img">
+                        <img src="./images/articles/article-3-1616662441.jpg" />
+                    </div>
+                    <div>
+                        <div class="tag tag-purple"><a href="articles.html">Sports</a></div>
+                        <div class="tag tag-new">NEW</div>
+                        <h3 class="card-title" href="./article.html">Lorem ipsum dolor</h3>
+                        <p class="card-data">
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde error nisi aperiam autem quae
+                            voluptate hic
+                            culpa? Beatae natus eum culpa corporis odio...
+                        </p>
+                        <a href="./news.html" class="btn btn-card">Read More <span>&twoheadrightarrow; </span>
+                        </a>
+                    </div>
+                </article>
+            </div>
+            
+    </section>
+
+<%- include("footer") -%>

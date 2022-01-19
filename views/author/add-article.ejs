@@ -1,0 +1,68 @@
+<%- include("header", {title: 'add-article'}) -%>
+
+    <section id="breadcrumb">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li><a href="../author/">Dashboard</a></li>
+                <li><a href="../author/articles">Articles</a></li>
+                <li class="active">Add</li>
+            </ol>
+        </div>
+    </section>
+
+    <%- include("quicklink") -%>
+                <div class="col-md-9">
+                    <!-- Website Overview -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading main-color-bg">
+                            <h3 class="panel-title">Add Article</h3>
+                        </div>
+                        <div class="panel-body">
+                            <form method="post" action="../author/add-article" id="add_form" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label>Article Title</label>
+                                    <input type="text" autocomplete="off" class="form-control"
+                                        placeholder="Article Title" name="article_title" id="article_title" required />
+                                    <p id="error-title" class="error-msg text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <label>Category</label>
+                                    <select name="category_id" class="form-control" id="category">
+                                        <option value="0" selected>Choose Any Category...</option>
+                                        <% categories.forEach(function(a) { %>
+                                        <option value="<%= a.name %>"><%= a.name %></option>
+                                        <%})%>
+                                    </select>
+                                    <p id="error-cat" class="error-msg text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <label>Article Description</label>
+                                    <textarea name="article_desc" autocomplete="off" id="article_desc"
+                                        class="form-control" placeholder="Article Description" rows="20" min="150"
+                                        required></textarea>
+                                    <p id="error-desc" class="error-msg text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <label>Article Image</label>
+                                    <input type="file" class="form-control" placeholder="Article Image"
+                                        name="article_img" id="article_img" accept="image/*" required />
+                                    <p id="error-img" class="error-msg text-danger"></p>
+                                </div>
+                                <div class="form-group text-center">
+                                    <img src="../images/choose.png" class="image_preview"
+                                        id="image_preview" />
+                                </div>
+                                <br>
+                                <div class="text-center">
+                                    <button type="submit" name="submit" class="btn btn-success">Post Article</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="../js/add-form-validate.js"></script>
+    </section>
+
+<%- include("footer") -%>

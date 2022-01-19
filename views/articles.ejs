@@ -1,0 +1,51 @@
+<%- include("header", {title: 'articles' }) -%>
+
+  <!-- Article List Container -->
+  <section class="py-1 category-list">
+    <div class="container">
+      <% if(category!=null){%>
+        <h2 class="headings">Articles - <%= category.name %>
+        </h2>
+        <% } else{%>
+          <h2 class="headings">Articles </h2>
+          <% } %>
+            <div class="card-container">
+
+
+              <% articles.forEach(function(a) { %>
+                <%let currentArticle=JSON.stringify(a);%>
+                <article class="card">
+                  <% if(user!=null){%> 
+                  <form action="../add-bookmark" method="post">                    
+                    <button name="current_article" value="<%= currentArticle %>" class="bookmark bookmark-btn"><i class="far fa-bookmark"></i></button>
+                  </form>
+                  <% } %> 
+                  <div class="card-img">
+                    <img src="data:image/<%=a.img.contentType%>;base64,<%=a.img.data.toString('base64')%>" />
+                  </div>
+                  <div>
+                    <div class="tag <% if(category!=null){%><%= category.color %><% } else{%> tag-blue <% } %>">
+                        <%= a.category %>
+                    </div>
+                    <div class="tag tag-date">
+                      <%= a.date.toDateString()%>
+                  </div>
+
+                    <h3 class="card-title" href="./articles">
+                      <%= a.title %>
+                    </h3>
+                    <p class="card-data">
+                      <%= a.description.slice(0,150)%>...
+                    </p>
+                    <form method="POST" action="/viewArticle">
+                        <button name="current_article" value="<%= currentArticle %>" id="view-btn"
+                          class="btn btn-card">Read
+                          More <span>&twoheadrightarrow; </span></button>
+                    </form>
+                  </div>
+                </article>
+                <% }) %>
+            </div>
+  </section>
+
+  <%- include("footer") -%>

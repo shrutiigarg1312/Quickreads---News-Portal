@@ -1,0 +1,107 @@
+<%- include("header", {title: 'news' }) -%>
+
+  <!--  Article Page Container  -->
+  <section class="article">
+    <div class="container">
+      <div class="page-container">
+        <!-- Container that stores the article -->
+        <article class="card1">
+
+          <!-- Article Title -->
+          <h1 class="article-heading">
+            <%= article.title %>
+          </h1>
+
+          <!-- Article Image -->
+          <img src="data:image/<%=article.img.contentType%>;base64,<%=article.img.data.toString('base64')%>" />
+
+          <!-- Container that stores author name, date and category name -->
+          <div class="meta">
+
+            <!-- Author Name -->
+            <div class="author">
+              <i class="fas fa-user-alt"></i>
+              <%= article.author %>
+            </div>
+
+            <!-- Article Publish Date -->
+            <div class="date">
+              <i class="fas fa-calendar-alt"></i>
+              <%= article.date.toDateString() %>
+            </div>
+
+            <!-- Category Name -->
+            <div class="tag <%= color %>">
+              <%= article.category %>
+            </div>
+          </div>
+
+          <!-- Article Description -->
+          <div class="article-content">
+            <p>
+              <%= article.description %>
+            </p>
+          </div>
+          <%let currentArticle=JSON.stringify(article);%>
+
+          <!-- Container that stores the button -->
+          <% if(user!=null){%> 
+          <div class="d-flex text-center">
+            <% if(bookmark==null ){ %> 
+            <form action="../add-bookmark" method="post">
+              <button name="current_article" value="<%= currentArticle %>" class="btn btn-bookmark" >Add To Bookmark &nbsp<i class="far fa-bookmark"></i></button>
+            </form>
+            <% } else {%>
+              <form action="../remove-bookmark" method="post">
+                <%let currentBookmark=JSON.stringify(article._id);%>
+                <button name="current_article" value="<%= currentBookmark %>" class="btn btn-remove-bookmark" >Remove from Bookmark &nbsp<i class="fas fa-bookmark"></i></button>
+              </form>
+          <% } }%>
+        </article>
+
+        <!-- Aside column for other quick links -->
+        <aside>
+          <!-- Trending Articles Card -->
+          <div class="card2">
+            <h2 class="aside-title">Must read</h2>
+            <% trending.forEach(function(t) { %>
+              <div class="aside-card">
+                <div class="aside-card-img">
+                  <img src="data:image/<%=t.img.contentType%>;base64,<%=t.img.data.toString('base64')%>" />
+                </div>
+                <div>
+                  <a class="aside-card-title" href="news.html'">
+                    <%=t.title%>
+                  </a>
+                  <div class="aside-card-author">
+                    <i class="fas fa-user-alt"></i>
+                    <%=t.author%>
+                  </div>
+                  <div class="aside-card-date">
+                    <i class="fas fa-calendar-alt"></i>
+                    <%=t.date.toDateString()%>
+                  </div>
+                </div>
+                <form method="POST" action="/viewArticle">
+                  <%let currentArticle=JSON.stringify(t);%>
+
+                    <button name="current_article" value="<%= currentArticle %>" id="view-btn" class="btn btn-card">Read
+                      More <span>&twoheadrightarrow; </span></button>
+                </form>
+              </div>
+
+              <% }) %>
+
+                <!-- View all button -->
+                <div class="text-center py-1">
+                  <a href="../articles" class="btn btn-card">View All <span>&twoheadrightarrow; </span>
+                  </a>
+                </div>
+          </div>
+
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <%- include("footer") -%>

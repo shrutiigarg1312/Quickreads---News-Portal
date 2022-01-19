@@ -1,0 +1,38 @@
+<%- include("header", {title: 'bookmarks' }) -%>
+
+  <!-- Article List Container -->
+  <section class="py-1 category-list">
+    <div class="container">
+      <h2 class="headings">Bookmarks</h2>
+      <div class="card-container">
+
+        <!-- Article Card -->
+        <%bookmarks.forEach(function(a) { %>
+        <article class="card">
+          <form action="../remove-bookmark" method="post">
+            <%let currentBookmark=JSON.stringify(a.article_id);%>
+            <button name="current_article" value="<%= currentBookmark %>" class="bookmark bookmark-btn"><i class="fas fa-bookmark"></i></button>
+          </form>
+          <div class="card-img">
+            <img src="data:image/<%=a.img.contentType%>;base64,<%=a.img.data.toString('base64')%>" />
+          </div>
+          <div>
+            <div class="tag tag-green"><a href="articles.html"><%= a.category %></a></div>
+            <div class="tag tag-date"><%= a.date.toDateString()%></div>
+            <h3 class="card-title" href="./article.html"><%= a.title %></h3>
+            <p class="card-data">
+              <%= a.description.slice(0,150)%>...
+            </p>
+            <form method="POST" action="/viewBookmark">
+            <%let currentArticle=JSON.stringify(a);%>
+              <button name="current_article" value="<%= currentArticle %>" id="view-btn"
+                class="btn btn-card">Read More <span>&twoheadrightarrow; </span></button>
+            </form>
+          </div>
+        </article>
+        <%}) %>
+      </div>
+    </div>
+  </section>
+
+  <%- include("footer") -%>

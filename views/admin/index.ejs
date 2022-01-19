@@ -1,0 +1,117 @@
+<%- include("header", {title: 'home'}) -%>
+
+
+  <section id="main">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="list-group">
+            <a href="../admin/" class="list-group-item active main-color-bg">
+              <span class="glyphicon glyphicon-link"></span>
+              Quick Links
+            </a>
+            <a href="../admin/" class="list-group-item"><span class="glyphicon glyphicon-home"></span> Dashboard
+            </a>
+            <a href="../admin/articles" class="list-group-item"><span class="glyphicon glyphicon-pencil"></span> Articles
+              <span class="badge">
+                <%= count_article %>
+              </span></a>
+            <a href="../admin/categories" class="list-group-item"><span class="glyphicon glyphicon-list"></span> Categories
+              <span class="badge">
+                <%= count_category %>
+              </span>
+            </a>
+            <a href="../admin/logout" class="list-group-item"><span class="glyphicon glyphicon-log-out"></span> Logout
+            </a>
+          </div>
+        </div>
+
+        <div class="col-md-9">
+          <!-- Website Overview -->
+          <div class="panel panel-default">
+            <div class="panel-heading main-color-bg">
+              <h3 class="panel-title">Overview</h3>
+            </div>
+            <div class="panel-body" style="padding: 2.5rem;">
+              <div class="col-md-4">
+                <div class="well dash-box">
+                  <h2>
+                    <span class="glyphicon glyphicon-pencil"></span>
+                    <%= count_article %>
+                  </h2>
+                  <h4>Articles</h4>
+                </div>
+              </div>
+          <div class="col-md-4">
+            <div class="well dash-box">
+              <h2>
+                <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+                <%= count_category %>
+              </h2>
+              <h4>Categories</h4>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="well dash-box">
+              <h2>
+                <span class="glyphicon glyphicon-user"></span>
+                <%= count_user %>
+              </h2>
+              <h4>Users</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!-- Latest Articles -->
+    <div class="row">
+
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading main-color-bg">
+            <h4 class="panel-title">Latest Articles</h4>
+          </div>
+          <div class="panel-body">
+            <table class="table table-striped article-list table-hover">
+              <tr>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Image</th>
+                <th>Author Name</th>
+                <th>Published On</th>
+              </tr>
+              <% articles.forEach(function(a) { %>
+              <tr>
+                <td>
+                  <%= a.title %>
+                </td>
+                <td>
+                  <%= a.category %>
+                </td>
+                <td>
+                  <img src="data:image/<%=a.img.contentType%>;base64,<%=a.img.data.toString('base64')%>">
+                </td>
+                <td>
+                  <%= a.author %>
+                </td>
+                <td>
+                  <%= a.date.toDateString()%>
+                </td>
+              </tr>
+              <% }) %>
+              <tr>
+                <td colspan="5" align="center" style="padding-top: 2rem;">
+                  <a href="../admin/articles" class="btn btn-primary ">View All</a>
+                </td>
+              </tr>              
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <%- include("footer") -%>

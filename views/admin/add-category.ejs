@@ -1,0 +1,82 @@
+<%- include("header",{title:'add-category'}) -%>
+<section id="breadcrumb">
+    <div class="container">
+      <ol class="breadcrumb">
+        <li><a href="../admin/">Dashboard</a></li>
+        <li><a href="../admin/categories">Categories</a></li>
+        <li class="active">Add</li>
+      </ol>
+    </div>
+  </section>
+  
+  <section id="main">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+            <div class="list-group">
+              <a href="../admin/" class="list-group-item active main-color-bg">
+                <span class="glyphicon glyphicon-link"></span>
+                Quick Links
+              </a>
+              <a href="../admin/" class="list-group-item"><span class="glyphicon glyphicon-home"></span> Dashboard
+              </a>
+              <a href="../admin/articles" class="list-group-item"><span class="glyphicon glyphicon-pencil"></span> Articles
+                </a>
+              <a href="../admin/categories" class="list-group-item"><span class="glyphicon glyphicon-list"></span> Categories
+                
+              </a>
+              <a href="../admin/logout" class="list-group-item"><span class="glyphicon glyphicon-log-out"></span> Logout
+              </a>
+            </div>
+          </div>
+        <div class="col-md-9">
+          <!-- Website Overview -->
+          <div class="panel panel-default">
+            <div class="panel-heading main-color-bg">
+              <h3 class="panel-title">Add Category</h3>
+            </div>
+            <div class="panel-body">
+              <form method="post" action="../admin/add-category" id="add_form" enctype="multipart/form-data">
+                <div class="form-group">
+                  <label>Category Name</label>
+                  <input type="text" autocomplete="off" class="form-control" placeholder="Category Name"
+                    name="category_title" id="category_title" required />
+                  <p id="error-title" class="error-msg text-danger"></p>
+                </div>
+                <div class="form-group">
+                  <label>Category Color</label>
+                  <select name="category_color" class="form-control" id="category_color">
+                    <option value="0" selected>Choose Any Color...</option>
+                    <option value="tag-yellow">Yellow</option>
+                    <option value="tag-green">Green</option>
+                    <option value="tag-pink">Pink</option>
+                    <option value="tag-orange">Orange</option>
+                    <option value="tag-purple">Purple</option>
+                    <option value="tag-brown">Brown</option>
+                    <option value="tag-blue">Blue</option>
+                  </select>
+                  <p id="error-cat" class="error-msg text-danger"></p>
+                </div>
+                <div class="form-group">
+                  <label>Category Image</label>
+                  <input type="file" class="form-control" placeholder="Category Image" name="category_img"
+                    id="category_img" accept="image/*" required />
+                  <p id="error-img" class="error-msg text-danger"></p>
+                </div>
+                <div class="form-group text-center">
+                  <img src="../images/choose.png" class="image_preview" id="image_preview" />
+                </div>
+                <br>
+                <div class="text-center">
+                  <button type="submit" name="submit" class="btn btn-success">Create Category</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../js/admin/add-form-validate-category.js"></script>
+  </section>
+  
+  <%- include("footer") -%>

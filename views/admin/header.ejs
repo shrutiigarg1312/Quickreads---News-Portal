@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="../images/favicon.ico" type="image/x-icon" />
+  <title>QuickReads Admin Panel</title>
+
+  <link href="../css/partials/4-component.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <link rel="icon" href="../images/favicon.ico" type="image/x-icon" />
+  <link href="../css/admin/style.css" rel="stylesheet" />
+  <link href="../css/partials/1-variables.css" rel="stylesheet" />
+</head>
+
+<body>
+  <nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+          aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" style="color:var(--primary-color); font-weight:bold;">QuickReads </a>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li <% if(title=="home"){%> class="active" <% } %> ><a href="../admin/">Dashboard</a></li>
+          <li <% if(title=="articles"){%> class="active" <% } %> ><a href="../admin/articles">Articles</a></li>
+          <li <% if(title=="categories"){%> class="active" <% } %> ><a href="../admin/categories">Categories</a></li>
+         
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a>Admin</a></li>
+          <li><a href="../admin/logout">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  
+  <header id="header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10">
+          <h1><% if(title=="home"){%> Dashboard <% } %> 
+            <% if(title=="articles"){%> Articles <% } %>
+            <% if(title=="categories"){%> Categories <% } %>
+          </h1>
+
+        </div>
+        <div class="col-md-2 btn-box">
+          <a href="../admin/add-category" class="btn btn-info" type="button">
+            Create New Category
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>

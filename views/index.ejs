@@ -1,0 +1,108 @@
+<%- include("header", {title: 'home' }) -%>
+
+  <!-- ======== IMAGE Container ======== -->
+  <header class="img-slider">
+    <div class="slide active">
+      <img align="top" src="data:image/<%=trending.img.contentType%>;base64,<%=trending.img.data.toString('base64')%>" />
+      <div class="info">
+        <div class=" tag tag-yellow"> <%= trending.category %></div>
+        <div class="tag tag-trend">TRENDING</div>
+        <h1> <%= trending.title %></h1>
+        <p>
+          <%= trending.description.slice(0,150)%>...
+        </p>
+        <form method="POST" action="/viewArticle">
+          <%let currentArticle=JSON.stringify(trending);%>
+
+            <button name="current_article" value="<%= currentArticle %>" id="view-btn" class="btn btn-card">Read
+              More <span>&twoheadrightarrow; </span></button>
+        </form>
+      </div>
+    </div>
+    <div class="slide-nav-btn active"></div>
+  </header>
+
+
+
+  <!-- Article List Container -->
+  <section class="py-1 category-list">
+    <div class="container">
+      <h2 class="headings">Articles</h2>
+      <div class="card-container">
+        <% articles.forEach(function(a) { %>
+          <!-- Article Card -->
+          <article class="card">
+            <%let currentArticle=JSON.stringify(a);%>
+            <% if(user!=null){%>
+            <form action="../add-bookmark" method="post">
+              <button name="current_article" value="<%= currentArticle %>" class="bookmark bookmark-btn"><i class="far fa-bookmark"></i></button>
+            </form>
+            <% }%>
+            <div class="card-img">
+              <img src="data:image/<%=a.img.contentType%>;base64,<%=a.img.data.toString('base64')%>" />
+            </div>
+            <div>
+              <div class="tag tag-blue"><a href="articles.html">
+                  <%= a.category %>
+                </a></div>
+              <div class="tag tag-new">NEW</div>
+              <h3 class="card-title" href="./article.html">
+                <%= a.title %>
+              </h3>
+              <p class="card-data">
+                <%= a.description.slice(0,150)%>...
+              </p>
+              <form method="POST" action="/viewArticle">
+
+                  <button name="current_article" value="<%= currentArticle %>" id="view-btn" class="btn btn-card">Read
+                    More <span>&twoheadrightarrow; </span></button>
+              </form>
+            </div>
+          </article>
+          <% }) %>
+            <!-- More articles card -->
+            <a href="./articles" class="card card-more d-flex">
+              <h3>MORE +</h3>
+            </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Category List Container -->
+  <section class="py-1 category-list">
+    <div class="container">
+      <h2 class="headings">Categories</h2>
+      <div class="card-container">
+
+        <% categories.forEach(function(a) { %>
+
+          <!-- Category card -->
+          <article class="card">
+            <div class="card-img">
+              <img src="data:image/<%=a.img.contentType%>;base64,<%=a.img.data.toString('base64')%>" />
+            </div>
+            <div>
+              <h3 class="card-title text-center" href="./article.html">
+                <%= a.name %>
+              </h3>
+
+              <div class="btn-block">
+                <a href="./articles.html" class="btn btn-card btn-card-category">
+                  Explore
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <% }) %>
+
+            <!-- More card -->
+            <a href="./categories" class="card card-more d-flex">
+              <h3>MORE +</h3>
+            </a>
+      </div>
+    </div>
+  </section>
+
+  <%- include("footer") -%>

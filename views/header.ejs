@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- PARTIAL CSS INCLUSIONS -->
+  <link rel="stylesheet" href="../css/partials/0-fonts.css" />
+  <link rel="stylesheet" href="../css/partials/1-variables.css" />
+  <link rel="stylesheet" href="../css/partials/2-reset.css" />
+  <link rel="stylesheet" href="../css/partials/3-typography.css" />
+  <link rel="stylesheet" href="../css/partials/4-component.css" />
+
+  <!-- CUSTOM CSS INCLUSIONS -->
+  <link rel="stylesheet" href="../css/style.css" />
+  
+  <!--FAVICON LINK-->
+  <link rel="icon" href="../images/favicon.ico" type="image/x-icon" />
+
+  <!-- TITLE OF THE PAGE -->
+  <title>QuickReads | The Official News Portal |<%= title %></title>
+
+  <!-- FONTAWESOME LINK -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" />
+</head>
+
+<body>
+
+  <!-- ======== BACK TO TOP BUTTON ======== -->
+  <button onclick="topFunction()" class="topNavBtn" id="topNavBtn" title="Go to top"><i
+      class="fa fa-arrow-up"></i></button>
+
+  <!-- ======== NAVBAR ======== -->
+  <nav class="navbar">
+    <div class="logo"><a href="/"><img src="../images/logo.png" /></a></div>
+    <ul class="ul">
+      <li><a <% if(title=="home"){%> class="current" <% } %> href="../">Home</a></li>
+      <li>
+        <a <% if(title=="categories"){%> class="current" <% } %> href="../categories">Categories</a>
+      </li>    
+    
+      <% if(user==null) {%>
+      <li>
+        <a <% if(title=="login"){%> class="current" <% } %>href="./user-login">Login</a>
+        <ul>
+          <li><a href="../user-login">User</a></li>
+          <li><a href="../author/login">Author</a></li>
+        </ul>
+      </li>
+    <%}else{%>
+      <li><a <% if(title=="bookmarks"){%> class="current" <% } %> href="../bookmarks">Bookmarks</a></li> 
+      <li>
+        <a <% if(title=="login"){%> class="current" <% } %>href=""><%= user.name%><i id="profile-icon" class="fas fa-user"></i></a>
+        
+        <ul>
+          <li><a href="../logout">Logout</a></li>
+        </ul>
+      </li>
+      <% } %> 
+    </ul>
+  </nav>
+

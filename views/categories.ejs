@@ -1,0 +1,36 @@
+<%- include("header", {title: 'categories'}) -%>
+
+<!-- Category List Container -->
+<section class="py-1 category-list">
+  <div class="container">
+    <h2 class="headings">Categories</h2>
+    <div class="card-container">
+
+     <% categories.forEach(function(a) { %>
+      
+     <!-- Category card -->
+     <article class="card">
+        <div class="card-img">
+          <img src="data:image/<%=a.img.contentType%>;base64,<%=a.img.data.toString('base64')%>" />
+        </div>
+        <div>
+          <h3 class="card-title text-center" href="./article.html">
+            <%= a.name %>
+          </h3>
+          
+          <div class="btn-block">
+            <form method="POST" action="/articles">
+              <%let currentCategory = JSON.stringify(a);%>  
+              <button name="current_category" value="<%= currentCategory %>" id="view-btn" class="btn btn-card btn-card-category">Explore</button>
+            </form>
+          </div>
+        </div>
+      </article>
+
+      <% }) %> 
+
+    </div>
+  </div>
+</section>
+
+<%- include("footer") -%>

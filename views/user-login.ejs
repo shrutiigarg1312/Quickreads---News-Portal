@@ -1,0 +1,72 @@
+<%- include("header", {title: 'login'}) -%>
+
+    <div class="container p-2">
+        <!-- Container to store two form divs -->
+        <div class="forms-container">
+            <!-- Left div for login -->
+            <div class="left">
+                <div class="form-title">
+                    <h4>User Login</h4>
+                </div>
+                <div class="login-form-container">
+                    <!-- Form for Login -->
+                    <form action="/user-login" method="post" class="login-form" id="login-form">
+                        <div class="input-field">
+                            <input type="email" name="login_email" id="login_email" placeholder=" Email Address"
+                                autocomplete="off">
+                        </div>
+                        <div class="input-field">
+                            <input type="password" name="login_password" id="login_password" placeholder=" Password"
+                                autocomplete="off">
+                        </div>
+                        <div class="input-field">
+                            <button type="submit" name="login-submit" >Login</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- Div to display the errors from the Login form -->
+                <div class="form-errors">
+                    <p class="errors" id="login-errors"><%= loginErr %> </p>
+                </div>
+            </div>
+            <!-- Right div for Signup -->
+            <div class="right">
+                <div class="form-title">
+                    <h4>User Signup</h4>
+                </div>
+                <div class="signup-form-container">
+                    <!-- Form for Signup -->
+                    <form action="/user-signup" method="POST" class="signup-form" id="signup-form">
+                        <div class="input-field">
+                            <input type="text" name="signup_name" id="signup_name" placeholder=" Name"
+                                autocomplete="off">
+                        </div>
+                        <div class="input-field">
+                            <input type="email" name="signup_email" id="signup_email" placeholder=" Email Address"
+                                autocomplete="off">
+                        </div>
+                        <div class="input-field">
+                            <input type="password" name="signup_password" id="signup_password" placeholder=" Password"
+                                autocomplete="off">
+                        </div>
+                        <div class="input-field">
+                            <input type="password" name="signup_confirm_password" id="signup_confirm_password"
+                                placeholder=" Confirm Password" autocomplete="off">
+                        </div>
+                        <div class="input-field">
+                            <button type="submit" name="signup_submit">Signup</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- Div to display the errors from the Signup form -->
+                <div class="form-errors d-flex">
+                    <p class="errors" id="signup-errors"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script for form Validation -->
+    <script src="./js/form-validate.js"></script>
+
+<%- include("footer") -%>
